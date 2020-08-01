@@ -1,14 +1,16 @@
 package school.cesar.eta.unit;
 
 public class MyApplication {
-    private MessageService service = new MessageService();
+    public static final String PREFIX = "[ETA - Unit Test] ";
 
-    public void setService(MessageService svc){
+    private MessageServiceInterface service = new MessageService();
+
+    public void setService(MessageServiceInterface svc){
         this.service = svc;
     }
 
-    public boolean processMessage(String msg, String rec){
-        String newMsg = "[ETA] " + msg;
-        return service.send(newMsg, rec);
+    public boolean processMessage(Message msg){
+        String newMsg = PREFIX + msg.getMsg();
+        return service.send(newMsg, msg.getRec());
     }
 }

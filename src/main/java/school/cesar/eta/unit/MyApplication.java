@@ -8,6 +8,7 @@ public class MyApplication {
     }
 
     public boolean processMessage(String msg, String rec){
-        return service.send(msg, rec);
+        String newMsg = "[ETA] " + msg;
+        return service.send(newMsg, rec);
     }
 }

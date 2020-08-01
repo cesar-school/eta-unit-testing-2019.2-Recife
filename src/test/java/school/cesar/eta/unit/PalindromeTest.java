@@ -1,17 +1,20 @@
 package school.cesar.eta.unit;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+@ExtendWith(MockitoExtension.class)
 public class PalindromeTest {
 
+    @Spy
     private Palindrome palindrome;
-
-    @BeforeEach
-    public void setupTest(){
-        palindrome = new Palindrome();
-    }
 
     @Test
     public void check_oneCharWord_true() {
@@ -27,7 +30,8 @@ public class PalindromeTest {
 
     @Test
     public void check_equalStartEndChar_true() {
-        Assertions.assertTrue(palindrome.check("aa"));
+        palindrome.check("aa");
+        verify(palindrome, times(2)).check(anyString());
     }
 
 
